@@ -14,7 +14,8 @@ const queryClient = new QueryClient();
 
 // Auth protection wrapper component
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const userData = localStorage.getItem('userData');
+  const isLoggedIn = userData ? JSON.parse(userData).isLoggedIn : false;
   
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;

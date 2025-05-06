@@ -19,8 +19,17 @@ const Login = () => {
     
     // This is a mock login function. In a real app, this would connect to a backend
     setTimeout(() => {
-      // For demo purposes, any login attempt succeeds
-      localStorage.setItem('isLoggedIn', 'true');
+      // For demo purposes, extract name from email
+      const name = email.split('@')[0];
+      
+      // Store user data in localStorage
+      const userData = {
+        email,
+        name: name.charAt(0).toUpperCase() + name.slice(1), // Capitalize first letter
+        isLoggedIn: true
+      };
+      
+      localStorage.setItem('userData', JSON.stringify(userData));
       toast.success("Login successful!");
       navigate('/');
       setIsLoading(false);
